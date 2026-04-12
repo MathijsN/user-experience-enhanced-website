@@ -30,8 +30,8 @@ Deze leertaak wordt behandeld in Sprint 10. Er worden verschillende workshops aa
 
 Deze opdracht is done als:
 
-- [ ] Je hebt een Performance audit op je website uitgevoerd, gevonden problemen gedocumenteerd en verholpen
-- [ ] Je hebt verschillende performance technieken toegepast
+- [ ] Je hebt een Performance audit op je website uitgevoerd, gevonden problemen gedocumenteerd en testresultaten verwerkt
+- [ ] Je hebt verschillende aangeboden standaarden op het gebied van frontend performance, zoals responsive images, layout shift en/of perceived performance gecombineerd
 - [ ] Je hebt met client-side scripting de user experience van je website verbeterd volgens het principe van Progressive Enhancement
 - [ ] Je hebt feedback en taken van de vorige sprints opgepakt en verwerkt
 - [ ] Je hebt je ontwerpkeuzes en eigen ideeën begrijpelijk uitgelegd in je Readme 
