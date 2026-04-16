@@ -5,6 +5,7 @@
   {% assign tomato_count = snapp.actions | where: 'action', 'tomato' | size %}
   {% assign star_count = snapp.actions | where: 'action', 'star' | size %}
   {% assign snapp_author = snapp.author.name %}
+  {% assign snapp_uuid = snapp.uuid %}
 
   {% render 'partials/top-navigation.liquid',
     title: snappmapsFiltered[0].name,
@@ -13,7 +14,8 @@
     tomato: tomato_count,
     like: like_count,
     star: star_count,
-    author: snapp_author
+    author: snapp_author,
+    uuid: snapp_uuid
   %}
 
   {% for group in snapp.author.groups %}

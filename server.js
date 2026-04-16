@@ -154,6 +154,36 @@ app.post('/snappmaps/:uuid', upload.single('file'), async function (request, res
 })
 
 
+app.post('/snapps/snappmap/:uuid', async function (request, response) {
+
+  const snappUuid = request.body.uuid
+  console.log('POST ', request.body)
+
+  try {
+
+    const fetchResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_action', {
+      method: 'POST',
+      body: JSON.stringify({
+        action: request.body.action,
+        snap: snappUuid,
+        user: userId
+      }),
+      headers: {
+        'Content-Type': 'application/json;charset=UTF-8'
+      }
+    })
+
+    if (fetchResponse.ok) {
+      response.redirect(303, `/snapps/snappmap/${snappUuid}?status=like`)
+    } else {
+      response.redirect(303, `/snapps/snappmap/${snappUuid}?status=failed`)
+    }
+  } catch (error) {
+    console.error('Fetch error:', error);
+    response.redirect(303, `/snapps/snappmap/${snappUuid}?status=error`);
+  }
+})
+
 
 
 app.use((req, res) => {
