@@ -255,10 +255,11 @@ nav {
             padding: var(--spacing-m);
             height: 100%;
 
-            form {
+            form fieldset {
                 display: flex;
                 justify-content: space-between;
                 gap: var(--spacing-m);
+                border: none;
 
                 button {
                     color: var(--color-secondary);
@@ -269,6 +270,16 @@ nav {
                     display: flex;
                     align-items: center;
                     gap: 5px;
+                }
+
+                &[disabled] {
+                    button {
+                        color: #BDC7CC;
+
+                        svg path {
+                            fill: #BDC7CC;
+                        }
+                    }
                 }
             }
         }
