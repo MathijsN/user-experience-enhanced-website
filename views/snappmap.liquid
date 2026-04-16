@@ -71,7 +71,8 @@
 
   <ul class="grid-view" id="grid">
     {% for snappmap in snappmap %}
-      {% for snapp in snappmap.snaps %}
+      {% assign sorted_snapps = snappmap.snaps | sort: 'date_created' | reverse %}
+      {% for snapp in sorted_snapps %}
         {% if snapp.picture.id != null and snapp.picture.filesize != null %}
           <li class="snapp-image">
             <a href="/snapps/snappmap/{{ snapp.uuid }}">
@@ -118,7 +119,8 @@
       {% endfor %}
     {% endfor %}
 
-    {% for snapp in snapps %}
+    {% assign sorted_snapps2 = snapps | sort: 'date_created' | reverse %}
+    {% for snapp in sorted_snapps2 %}
       {% if snapp.picture.id != null %}
         <li class="snapp-image">
           <a href="/snapps/location/{{ snapp.uuid }}">
