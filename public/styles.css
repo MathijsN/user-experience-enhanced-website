@@ -246,7 +246,31 @@ nav {
                     border: none;
                 }
             }
+        }
 
+        menu.nav-layout-snapp {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: var(--spacing-m);
+            height: 100%;
+
+            form {
+                display: flex;
+                justify-content: space-between;
+                gap: var(--spacing-m);
+
+                button {
+                    color: var(--color-secondary);
+                    background-color: transparent;
+                    border: none;
+                    font-size: var(--text-size-s);
+
+                    display: flex;
+                    align-items: center;
+                    gap: 5px;
+                }
+            }
         }
     }
 }

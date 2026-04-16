@@ -49,7 +49,6 @@ app.get('/snappmaps/:uuid', async function (request, response) {
   const snappmappJSON = await snappmapResponse.json()
   const path = request.path
 
-
   response.render('snappmap.liquid', { snappmap: snappmappJSON.data, groups: groupsJSON.data, path: path, currentPage: '', userId: userId })
 })
 
@@ -72,7 +71,7 @@ app.get('/snapps/:location', async function (request, response) {
   const snappsJSON = await snappsResponse.json()
 
 
-  response.render('snappmap.liquid', { snapps: snappsJSON.data, currentPage: 'snappmaps' })
+  response.render('snappmap.liquid', { snapps: snappsJSON.data, currentPage: 'snappmaps', path: request.path })
 })
 
 

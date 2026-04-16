@@ -1,7 +1,18 @@
 {% render 'partials/head.liquid', title: 'Homepage' %}
 
 <main>
-  {% render 'partials/top-navigation.liquid', title: snappmapsFiltered[0].name, allSnappmaps: allSnappmaps %}
+  {% assign like_count = snapp.actions | where: 'action', 'like' | size %}
+  {% assign tomato_count = snapp.actions | where: 'action', 'tomato' | size %}
+  {% assign star_count = snapp.actions | where: 'action', 'star' | size %}
+
+  {% render 'partials/top-navigation.liquid',
+    title: snappmapsFiltered[0].name,
+    allSnappmaps: allSnappmaps,
+    path: path,
+    tomato: tomato_count,
+    like: like_count,
+    star: star_count
+  %}
 
   {% for group in snapp.author.groups %}
     {% for user in group.snappthis_group_uuid.users %}
