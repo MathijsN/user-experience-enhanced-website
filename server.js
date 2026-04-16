@@ -157,7 +157,6 @@ app.post('/snappmaps/:uuid', upload.single('file'), async function (request, res
 app.post('/snapps/snappmap/:uuid', async function (request, response) {
 
   const snappUuid = request.body.uuid
-  console.log('POST ', request.body)
 
   try {
 

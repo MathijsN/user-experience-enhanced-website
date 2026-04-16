@@ -207,7 +207,7 @@ nav {
                 align-items: center;
                 height: 100%;
 
-                img {
+                svg {
                     height: 36%;
                     aspect-ratio: 1/1;
                 }
@@ -426,7 +426,9 @@ ul.snapp-link-list {
 }
 
 .active {
-    filter: brightness(0) saturate(100%) invert(48%) sepia(78%) saturate(2852%) hue-rotate(122deg) brightness(106%) contrast(101%);
+    path {
+        fill: var(--color-accent);
+    }
 }
 
 
