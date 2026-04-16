@@ -42,6 +42,7 @@ app.get('/snappmaps', async function (request, response) {
 
 
 
+
 app.get('/snappmaps/:uuid', async function (request, response) {
 
   const snappmapResponse = await fetch('https://fdnd-agency.directus.app/items/snappthis_snapmap?fields=*.*.*.*&filter[uuid][_eq]=' + request.params.uuid)
