@@ -87,3 +87,43 @@ if (window.location.href.includes('succes')) {
 if (window.location.href.includes('upload_failed')) {
     errorPopover.showPopover()
 }
+
+
+
+const pictureForm = document.querySelector("form.picture")
+const pictureFormButton = document.querySelector("form.picture button")
+const snapps = document.getElementById("grid")
+const loadingIndicator = document.querySelector("div#loading")
+
+pictureForm.addEventListener('submit', async function (e) {
+    e.preventDefault()
+
+    loadingIndicator.classList.add('shown')
+
+    let formData = new FormData(pictureForm);
+
+    const response = await fetch(pictureForm.action, {
+        method: pictureForm.method, //POST dus
+        body: new URLSearchParams(formData) // <<< Dit moet omdat server.js anders niet met de formulier data kan werken
+    })
+
+
+    const responseData = await response.text()
+    console.log(responseData)
+
+    const parser = new DOMParser()
+    const responseDOM = parser.parseFromString(responseData, 'text/html')
+
+    // Zoek in die nieuwe HTML DOM onze nieuwe UI state op, die we via Liquid hebben klaargemaakt
+    const newState = responseDOM.querySelector('ul#grid')
+
+    // data van de server toevoegen aan de DOM, aan de scorelijst in de ol
+    // Overschrijf de HTML met de nieuwe HTML
+    snapps.innerHTML = newState.innerHTML
+
+    // Loading state weghalen
+    // Nu kan je waarschijnlijk de Loading state vervangen door een Success state
+    console.log("Loading state weghalen")
+    loadingIndicator.classList.remove("shown")
+    loadingIndicator.classList.add("hidden")
+})

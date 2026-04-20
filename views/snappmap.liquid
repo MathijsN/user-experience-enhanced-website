@@ -69,6 +69,10 @@
     <button popovertarget="error-message">Try again</button>
   </div>
 
+  <div class="loading" id="loading">
+    <p>loading...</p>
+  </div>
+
   <ul class="grid-view" id="grid">
     {% for snappmap in snappmap %}
       {% assign sorted_snapps = snappmap.snaps | sort: 'date_created' | reverse %}

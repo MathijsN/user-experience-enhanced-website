@@ -505,3 +505,11 @@ form.picture {
         border-radius: 2rem;
     }
 }
+
+.loading {
+    display: none;
+
+    &.shown {
+        display: block;
+    }
+}
