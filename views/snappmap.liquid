@@ -59,15 +59,22 @@
     {% endfor %}
   {% endfor %}
 
-  <div popover id="succes-message" class="succes-message">
+  <dialog id="succes-dialog" popover>
     <h2>Your snapp has been added successfully!</h2>
-    <button popovertarget="succes-message">OK</button>
-  </div>
+    <button popovertarget="succes-dialog" popovertargetaction="hide">OK</button>
+  </dialog>
 
-  <div popover id="error-message" class="error-message">
+  <dialog id="failure-dialog" popover>
     <h2>Something went wrong, please try again.</h2>
-    <button popovertarget="error-message">Try again</button>
-  </div>
+    <button popovertarget="failure-dialog" popovertargetaction="hide">OK</button>
+  </dialog>
+
+  {% comment %}
+    <div popover id="error-message" class="error-message">
+      <h2>Something went wrong, please try again.</h2>
+      <button popovertarget="error-message">Try again</button>
+    </div>
+  {% endcomment %}
 
   <div class="loading" id="loading">
     <p>loading...</p>

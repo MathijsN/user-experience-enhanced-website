@@ -1,8 +1,6 @@
 const viewButtons = document.querySelectorAll('.view-selection ul li button')
 const grid = document.getElementById('grid')
 const viewImg = document.querySelector('.viewImg')
-const succesPopover = document.getElementById('succes-message')
-const errorPopover = document.getElementById('error-message')
 
 viewButtons.forEach((button) => {
     button.addEventListener('click', ev => {
@@ -66,11 +64,14 @@ function loadInitialView() {
 loadInitialView()
 
 
+
+const preview = document.querySelector('.image-preview');
+const svg = document.querySelector('.picture-icon');
+const uploadButton = document.querySelector('form.picture button')
+
 document.getElementById('file').onchange = function (evt) {
     const [file] = this.files;
     if (file) {
-        const preview = document.querySelector('.image-preview');
-        const svg = document.querySelector('.picture-icon');
 
         // Set the src of the image to the local file path
         preview.src = URL.createObjectURL(file);
@@ -79,13 +80,6 @@ document.getElementById('file').onchange = function (evt) {
         preview.style.display = 'block';
         svg.style.display = 'none';
     }
-};
-
-if (window.location.href.includes('succes')) {
-    succesPopover.showPopover()
-}
-if (window.location.href.includes('upload_failed')) {
-    errorPopover.showPopover()
 }
 
 
@@ -93,7 +87,7 @@ if (window.location.href.includes('upload_failed')) {
 const pictureForm = document.querySelector("form.picture")
 const pictureFormButton = document.querySelector("form.picture button")
 const snapps = document.getElementById("grid")
-const loadingIndicator = document.querySelector("div#loading")
+const loadingIndicator = document.getElementById("loading")
 
 pictureForm.addEventListener('submit', async function (e) {
     e.preventDefault()
@@ -103,27 +97,37 @@ pictureForm.addEventListener('submit', async function (e) {
     let formData = new FormData(pictureForm);
 
     const response = await fetch(pictureForm.action, {
-        method: pictureForm.method, //POST dus
-        body: new URLSearchParams(formData) // <<< Dit moet omdat server.js anders niet met de formulier data kan werken
+        method: 'POST',
+        body: formData // <<< Dit moet omdat server.js anders niet met de formulier data kan werken
     })
 
+    if (response.ok) {
 
-    const responseData = await response.text()
-    console.log(responseData)
+        const responseData = await response.text()
 
-    const parser = new DOMParser()
-    const responseDOM = parser.parseFromString(responseData, 'text/html')
+        const parser = new DOMParser()
+        const responseDOM = parser.parseFromString(responseData, 'text/html')
 
-    // Zoek in die nieuwe HTML DOM onze nieuwe UI state op, die we via Liquid hebben klaargemaakt
-    const newState = responseDOM.querySelector('ul#grid')
+        // Zoek in die nieuwe HTML DOM onze nieuwe UI state op, die we via Liquid hebben klaargemaakt
+        const newState = responseDOM.querySelector('ul#grid')
 
-    // data van de server toevoegen aan de DOM, aan de scorelijst in de ol
-    // Overschrijf de HTML met de nieuwe HTML
-    snapps.innerHTML = newState.innerHTML
+        // data van de server toevoegen aan de DOM, aan de scorelijst in de ol
+        // Overschrijf de HTML met de nieuwe HTML
+        snapps.innerHTML = newState.innerHTML
+        preview.style.display = 'none'
+        uploadButton.style.display = 'none'
+        svg.style.display = 'block'
+
+
+        document.getElementById('succes-dialog').show()
+    } else {
+        document.getElementById('failure-dialog').show()
+    }
+
+
 
     // Loading state weghalen
     // Nu kan je waarschijnlijk de Loading state vervangen door een Success state
+    loadingIndicator.classList.toggle("shown")
     console.log("Loading state weghalen")
-    loadingIndicator.classList.remove("shown")
-    loadingIndicator.classList.add("hidden")
 })

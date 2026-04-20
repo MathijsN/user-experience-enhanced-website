@@ -474,9 +474,7 @@ form.picture {
 }
 
 
-:popover-open.succes-message,
-:popover-open.error-message {
-
+dialog[open] {
     border: none;
     display: flex;
     flex-direction: column;
@@ -485,7 +483,9 @@ form.picture {
     align-self: center;
     justify-self: center;
 
-    &::backdrop {
+    z-index: 1;
+
+    ::backdrop {
         background-color: rgba(0, 0, 0, 0.206);
     }
 
@@ -505,6 +505,7 @@ form.picture {
         border-radius: 2rem;
     }
 }
+
 
 .loading {
     display: none;
