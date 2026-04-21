@@ -77,8 +77,11 @@ document.getElementById('file').onchange = function (evt) {
         preview.src = URL.createObjectURL(file);
 
         // Show the image and hide the SVG icon
-        preview.style.display = 'block';
-        svg.style.display = 'none';
+
+        preview.style.display = 'block'
+        uploadButton.style.display = 'block'
+        svg.style.display = 'none'
+
     }
 }
 
@@ -113,11 +116,12 @@ pictureForm.addEventListener('submit', async function (e) {
 
         // data van de server toevoegen aan de DOM, aan de scorelijst in de ol
         // Overschrijf de HTML met de nieuwe HTML
-        snapps.innerHTML = newState.innerHTML
+
         preview.style.display = 'none'
         uploadButton.style.display = 'none'
         svg.style.display = 'block'
 
+        snapps.innerHTML = newState.innerHTML
 
         document.getElementById('succes-dialog').show()
     } else {

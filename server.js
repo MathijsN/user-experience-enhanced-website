@@ -49,6 +49,8 @@ app.get('/snappmaps/:uuid', async function (request, response) {
   const snappmappJSON = await snappmapResponse.json()
   const path = request.path
 
+  console.log(path)
+
   response.render('snappmap.liquid', { snappmap: snappmappJSON.data, groups: groupsJSON.data, path: path, currentPage: '', userId: userId })
 })
 

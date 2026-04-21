@@ -475,6 +475,8 @@ form.picture {
 
 
 dialog[open] {
+    position: fixed;
+    inset: 0;
     border: none;
     display: flex;
     flex-direction: column;
@@ -484,10 +486,6 @@ dialog[open] {
     justify-self: center;
 
     z-index: 1;
-
-    ::backdrop {
-        background-color: rgba(0, 0, 0, 0.206);
-    }
 
     h2 {
         text-align: center;
