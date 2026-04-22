@@ -68,6 +68,8 @@ loadInitialView()
 const preview = document.querySelector('.image-preview');
 const svg = document.querySelector('.picture-icon');
 const uploadButton = document.querySelector('form.picture button')
+const uploadButtonText = document.querySelector('form.picture button span')
+const uploadLoading = document.querySelector('form.picture button div')
 
 document.getElementById('file').onchange = function (evt) {
     const [file] = this.files;
@@ -79,23 +81,22 @@ document.getElementById('file').onchange = function (evt) {
         // Show the image and hide the SVG icon
 
         preview.style.display = 'block'
-        uploadButton.style.display = 'block'
+        uploadButton.style.display = 'flex'
         svg.style.display = 'none'
-
+        uploadLoading.style.display = 'none'
     }
 }
 
 
 
 const pictureForm = document.querySelector("form.picture")
-const pictureFormButton = document.querySelector("form.picture button")
 const snapps = document.getElementById("grid")
-const loadingIndicator = document.getElementById("loading")
 
 pictureForm.addEventListener('submit', async function (e) {
     e.preventDefault()
 
-    loadingIndicator.classList.add('shown')
+    uploadLoading.style.display = 'block'
+    uploadButtonText.textContent = 'Loading'
 
     let formData = new FormData(pictureForm);
 
@@ -132,6 +133,7 @@ pictureForm.addEventListener('submit', async function (e) {
 
     // Loading state weghalen
     // Nu kan je waarschijnlijk de Loading state vervangen door een Success state
-    loadingIndicator.classList.toggle("shown")
+    uploadLoading.style.display = 'none'
+    uploadButtonText.textContent = 'Upload!'
     console.log("Loading state weghalen")
 })

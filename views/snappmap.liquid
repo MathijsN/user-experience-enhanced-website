@@ -51,7 +51,34 @@
                 >
               </label>
               <input type="file" name="file" accept="image/*" capture="environment" id="file" required>
-              <button type="submit" class="shown">Upload!</button>
+              <button type="submit" class="shown">
+                <span>Upload!</span>
+                <div class="loader loader--style2" title="1">
+                  <svg
+                    version="1.1"
+                    id="loader-1"
+                    xmlns="http://www.w3.org/2000/svg"
+                    xmlns:xlink="http://www.w3.org/1999/xlink"
+                    x="0px"
+                    y="0px"
+                    width="20px"
+                    height="20px"
+                    viewBox="0 0 50 50"
+                    style="enable-background:new 0 0 50 50;"
+                    xml:space="preserve"
+                  >
+                    <path fill="#fff" d="M25.251,6.461c-10.318,0-18.683,8.365-18.683,18.683h4.068c0-8.071,6.543-14.615,14.615-14.615V6.461z">
+                      <animateTransform attributeType="xml"
+                        attributeName="transform"
+                        type="rotate"
+                        from="0 25 25"
+                        to="360 25 25"
+                        dur="0.6s"
+                        repeatCount="indefinite"/>
+                      </path>
+                  </svg>
+                </div>
+              </button>
             </form>
           {% endif %}
         {% endif %}
@@ -89,17 +116,6 @@
       <button>OK</button>
     </form>
   </dialog>
-
-  {% comment %}
-    <div popover id="error-message" class="error-message">
-      <h2>Something went wrong, please try again.</h2>
-      <button popovertarget="error-message">Try again</button>
-    </div>
-  {% endcomment %}
-
-  <div class="loading" id="loading">
-    <p>loading...</p>
-  </div>
 
   <ul class="grid-view" id="grid">
     {% for snappmap in snappmap %}

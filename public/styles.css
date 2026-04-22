@@ -452,6 +452,9 @@ form.picture {
         border: 0;
         border-radius: 60px;
         font-size: var(--text-size-s);
+
+        align-items: center;
+        gap: var(--spacing-s);
     }
 
     img.image-preview {
@@ -501,14 +504,5 @@ dialog[open] {
         color: var(--color-secondary);
         border: 0;
         border-radius: 2rem;
-    }
-}
-
-
-.loading {
-    display: none;
-
-    &.shown {
-        display: block;
     }
 }
