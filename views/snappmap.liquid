@@ -86,13 +86,6 @@
     {% endfor %}
   {% endfor %}
 
-  {% comment %}
-    <dialog id="succes-dialog" popover>
-      <h2>Your snapp has been added successfully!</h2>
-      <button popovertarget="succes-dialog" popovertargetaction="hide">OK</button>
-    </dialog>
-  {% endcomment %}
-
   <dialog
     id="succes-dialog"
     {% if path contains 'status=succes' %}
